@@ -4,6 +4,8 @@ import os
 
 app = Flask(__name__)
 
+counter = 0
+
 # route
 @app.route('/')
 # route function
@@ -11,10 +13,20 @@ def home():
   # send 'hey!'
   return 'nothing is here'
 
+@app.route('/status')
+def status():
+  return str(counter)
 
-@app.route('/fire')
-def fire():
-  return 'yes'
+
+@app.route('/increment')
+def increment():
+  counter++
+  return str(counter)
+
+@app.route('/reset')
+def reset():
+  counter = 0
+  return str(counter)
 
 # listen
 if __name__ == "__main__":
@@ -24,7 +36,7 @@ if __name__ == "__main__":
     app.run(host='0.0.0.0', port=os.environ['PORT_A']) # 56811
   elif os.environ['FLASK_ENV'] == 'development':
     print("dev mode")
-    app.run(host='0.0.0.0', port=os.environ['PORT_A']) # 56811
+    app.run(host='0.0.0.0', port=5000) # 56811
   else:
     app.run(host='0.0.0.0', port=5000)
   # app.run(port=3000, debug=True)
