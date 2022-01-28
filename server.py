@@ -18,7 +18,11 @@ def fire():
 
 # listen
 if __name__ == "__main__":
-  if os.environ['FLASK_ENV'] == 'development':
+
+  if os.environ['HOME'] == '/home/kyle':
+    print("dev mode 1")
+    app.run(host='0.0.0.0', port=os.environ['PORT_A']) # 56811
+  elif os.environ['FLASK_ENV'] == 'development':
     print("dev mode")
     app.run(host='0.0.0.0', port=os.environ['PORT_A']) # 56811
   else:
