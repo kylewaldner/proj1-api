@@ -4,29 +4,34 @@ import os
 
 app = Flask(__name__)
 
-counter = 0
+
+app.config['COUNTER'] = 0
+
 
 # route
 @app.route('/')
 # route function
 def home():
   # send 'hey!'
+  print(app.config['COUNTER'])
   return 'nothing is here'
 
 @app.route('/status')
 def status():
-  return str(counter)
+  return str(app.config['COUNTER'])
 
 
 @app.route('/increment')
 def increment():
+  counter = app.config['COUNTER']
   counter += 1
+  app.config['COUNTER'] = counter
   return str(counter)
 
 @app.route('/reset')
 def reset():
-  counter = 0
-  return str(counter)
+  app.config['COUNTER'] = 0
+  return str(0)
 
 # listen
 if __name__ == "__main__":
