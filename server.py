@@ -20,7 +20,7 @@ def status():
 
 @app.route('/increment')
 def increment():
-  counter++
+  counter += 1
   return str(counter)
 
 @app.route('/reset')
